@@ -3,7 +3,7 @@
 }
 
 .profile_img{
-    @apply w-40 cursor-pointer;
+    @apply w-32 h-32 cursor-pointer;
 }
 
 .textbox{
