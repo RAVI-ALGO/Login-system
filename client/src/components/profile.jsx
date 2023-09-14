@@ -68,7 +68,7 @@ export default  function  Profile() {
           toast.error(result.error)
         }
         if (result?.data) {
-          console.log(result.data);
+         
           setFile(result.data.profile)
           setUserDetails(result.data)
           setValues({

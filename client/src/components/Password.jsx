@@ -27,13 +27,13 @@ export default function Password() {
       formdata.append("password", values.password);
       
       await axios
-        .post("http://localhost:8080/api/login", formdata, {
+        .post(`${process.env.REACT_APP_API_URL}/api/login`, formdata, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
-         console.log(res);
+       
           if (res.status === 200) {
             localStorage.setItem("token", res.data.token);
             console.log("token generate = " + localStorage.getItem("token"));
@@ -62,7 +62,7 @@ export default function Password() {
     }
     if(result?.data)
     {
-      console.log(result.data)
+     
       setUserData(result.data)
     }
   }).catch((err)=>console.log(err));

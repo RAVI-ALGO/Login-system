@@ -12,7 +12,7 @@ export default function Recovery() {
    const navigate = useNavigate()
   useEffect(() => {
     generateOTP(username).then((OTP) => {
-      console.log('OTP',OTP)
+     
       if(OTP) return toast.success('OTP has been send to your email!');
       return toast.error('Problem while generating OTP!')
     }).catch((err)=>{return err})
@@ -44,9 +44,7 @@ export default function Recovery() {
       }
     );
 
-    sentPromise.then((OTP) => {
-      console.log(OTP)
-    });
+   
     
   }
 

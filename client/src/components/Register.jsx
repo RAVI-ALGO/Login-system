@@ -27,7 +27,7 @@ export default function Register() {
     onSubmit: async (values) => {
      
        values = await Object.assign(values, { profile : file || ''})
-       console.log("register", values);
+      
       let registerPromise = registerUser(values)
       toast.promise(registerPromise, {
         loading: 'Creating...',

@@ -22,11 +22,10 @@ function App() {
         <Route exact path='/' element={<Username />} />
         <Route exact path='/password' element={<Password />} />
         <Route exact path='/register' element={<Register />} />
-
+        <Route exact path='/password/recover-password/:username' element={<Recovery />} />
+        <Route exact path='/reset-password/:username' element={<Reset />} />
         <Route element={<PrivateComponent />}>
           <Route exact path='/profile' element={<Profile />} />
-          <Route exact path='/password/recover-password/:username' element={<Recovery />} />
-          <Route exact path='/reset-password/:username' element={<Reset />} />
         </Route>
       </Routes>
     </>
