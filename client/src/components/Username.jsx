@@ -1,12 +1,16 @@
 import React from 'react'
 import avatar from '../assets/images/profile.png'
 import styles from '../assets/css/Username.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast'
+import { toast } from "react-hot-toast";
 import { useFormik } from 'formik'
 import {userNameValidate} from '../helpers/validate'
-
+import { useAuthStore } from '../store/store';
+import { authenticate } from "../helpers/helper";
 export default function Username() {
+ const setUsername = useAuthStore((state)=>state.setUsername)
+ const navigate = useNavigate()
   const { values, handleSubmit ,handleChange,handleBlur } = useFormik({
     initialValues: {
       userName: ""
@@ -15,8 +19,12 @@ export default function Username() {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
-      console.log(values);
-
+      setUsername(values.userName)
+      const {status} = await authenticate(values.userName)
+      if(status ===200)
+      {
+        navigate('/password')
+      }else toast.error('user does not exist...!')
     }
   })
   return (
@@ -40,7 +48,7 @@ export default function Username() {
             </div>
 
             <div className="textbox flex flex-col items-center gap-6">
-              <input value={values.userName} onChange={handleChange} name='userName'
+              <input value={values.userName} onChange={handleChange}  name='userName'
 
                 onBlur={handleBlur} className={styles.textbox} type="text" placeholder='Username' />
               <button className={styles.btn} type='submit'>Let's Go</button>

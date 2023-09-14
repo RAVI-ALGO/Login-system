@@ -8,22 +8,26 @@ import Password from './components/Password';
 import Recovery from './components/Recovery';
 import Reset from './components/Reset';
 import Profile from './components/Profile';
+import PrivateComponent from './middleware/Private';
 
 
 
 
 
 function App() {
-  
+
   return (
     <>
       <Routes>
-      <Route exact path='/' element={<Username />} />
-      <Route exact path='/password' element={<Password />} />
-      <Route exact path='/register' element={<Register />} />
-      <Route exact path='/password/recover-password' element={<Recovery />} />
-      <Route exact path='/reset-password' element={<Reset />} />
-      <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/' element={<Username />} />
+        <Route exact path='/password' element={<Password />} />
+        <Route exact path='/register' element={<Register />} />
+
+        <Route element={<PrivateComponent />}>
+          <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='/password/recover-password/:username' element={<Recovery />} />
+          <Route exact path='/reset-password/:username' element={<Reset />} />
+        </Route>
       </Routes>
     </>
   );

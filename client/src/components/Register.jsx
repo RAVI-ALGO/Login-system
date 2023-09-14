@@ -28,14 +28,14 @@ export default function Register() {
      
        values = await Object.assign(values, { profile : file || ''})
        console.log("register", values);
-      // let registerPromise = registerUser(values)
-      // toast.promise(registerPromise, {
-      //   loading: 'Creating...',
-      //   success : <b>Register Successfully...!</b>,
-      //   error : <b>Could not Register.</b>
-      // });
+      let registerPromise = registerUser(values)
+      toast.promise(registerPromise, {
+        loading: 'Creating...',
+        success : <b>Register Successfully...!</b>,
+        error : <b>Could not Register.</b>
+      });
 
-      //registerPromise.then(function(){ navigate('/')});
+      registerPromise.then(function(){ navigate('/')});
     }
   })
 
@@ -63,7 +63,7 @@ export default function Register() {
           <form className='py-1' onSubmit={handleSubmit}>
             <div className='profile flex justify-center py-4 '>
               <label htmlFor="profile">
-                <img src={file || avatar} className={styles.profile_img} alt="avatar" />
+                <img src={file || avatar} className={styles.profile_img} title='Profile picture' alt="avatar" />
               </label>
 
               <input onChange={onUpload} type="file" id='profile' name='profile' />
